@@ -13,29 +13,41 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #fff8e1, #ffe0b2);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow-x: hidden;
       box-sizing: border-box;
       text-align: center;
+
+      /* 🌌 Fondo galáctico animado */
+      background: linear-gradient(135deg, #1a1a40, #3f2b96, #a8c0ff);
+      background-size: 400% 400%;
+      animation: fondoAnimado 15s ease infinite;
+    }
+
+    @keyframes fondoAnimado {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h1 {
       font-size: 2rem;
-      color: #b71c1c;
+      color: #ffd700;
       margin: 5px 0 10px 0;
       animation: fadeIn 3s ease-in-out;
       z-index: 2;
+      text-shadow: 0 0 10px #fff, 0 0 20px #ff8;
     }
 
     p {
       font-size: 1.1rem;
-      color: #4e342e;
+      color: #fff;
       max-width: 90%;
       animation: fadeIn 5s ease-in-out;
       line-height: 1.5;
       margin: 8px 0;
       z-index: 2;
+      text-shadow: 0 0 5px #000;
     }
 
     img {
@@ -58,16 +70,16 @@
     /* ❤️ Corazones flotando */
     .heart {
       position: fixed;
-      color: red;
-      font-size: 24px;
+      color: #ff4d6d;
+      font-size: 16px;
       animation: floatUp 6s linear forwards;
       pointer-events: none;
       z-index: 1;
     }
 
     @keyframes floatUp {
-      from {transform: translateY(100vh) scale(1);}
-      to {transform: translateY(-10vh) scale(1.5);}
+      from {transform: translateY(100vh) scale(0.8);}
+      to {transform: translateY(-10vh) scale(1.2);}
     }
 
     /* ✨ Estrellitas diagonales */
@@ -83,14 +95,25 @@
     }
 
     @keyframes moverEstrella {
-      from {
-        transform: translateY(100vh) translateX(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-20vh) translateX(50vw);
-        opacity: 0;
-      }
+      from { transform: translateY(100vh) translateX(0); opacity: 1; }
+      to { transform: translateY(-20vh) translateX(50vw); opacity: 0; }
+    }
+
+    /* ✨ Destello galáctico al click */
+    .destello {
+      position: absolute;
+      color: #fff;
+      font-size: 2rem;
+      transform: translate(-50%, -50%);
+      animation: destello 1s ease forwards;
+      text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #f0f;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    @keyframes destello {
+      from { transform: scale(0); opacity: 1; }
+      to { transform: scale(3); opacity: 0; }
     }
 
     /* 📱 Responsive */
@@ -109,7 +132,7 @@
 </head>
 <body>
   <h1>🌹 Feliz Día de las Flores 🌹</h1>
-  <img src="20_09_2025.png" alt="Ramo de flores">
+  <img src="flores.png" alt="Ramo de flores">
   <p>
     Cada pétalo amarillo es un rayito de sol que quiero regalarte hoy.  
     Gracias por llenar mi vida de alegría, ternura y amor.  
@@ -122,17 +145,17 @@
   </audio>
 
   <script>
-    // ❤️ Corazones flotando
+    // ❤️ Corazones flotando (más pequeños)
     function crearCorazon() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
       heart.innerHTML = "❤️";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.style.fontSize = Math.random() * 15 + 10 + "px";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }
-    setInterval(crearCorazon, 500);
+    setInterval(crearCorazon, 600);
 
     // ✨ Estrellitas diagonales
     function crearEstrella() {
@@ -146,11 +169,20 @@
     }
     setInterval(crearEstrella, 300);
 
-    // 🎵 Música al tocar la pantalla
+    // 🎵 Música y ✨ destellos al hacer click
     const musica = document.getElementById("musica");
-    document.body.addEventListener("click", () => {
-      musica.play();
-    }, { once: true });
+    document.body.addEventListener("click", (e) => {
+      musica.play(); // activa música en el primer clic
+
+      const destello = document.createElement("div");
+      destello.classList.add("destello");
+      destello.innerHTML = "✨";
+      destello.style.left = e.pageX + "px";
+      destello.style.top = e.pageY + "px";
+      document.body.appendChild(destello);
+
+      setTimeout(() => destello.remove(), 1000);
+    });
   </script>
 </body>
 </html>
