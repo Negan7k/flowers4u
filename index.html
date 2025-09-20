@@ -106,22 +106,36 @@
       pointer-events: none;
       z-index: 1;
     }
+    
+    .contenedor-girasoles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;   /* 🚫 evita scroll por los girasoles */
+    pointer-events: none;
+    z-index: 1;
+    }
+
 
     /* ✨ Destello al click */
     .destello {
-      position: absolute;
-      color: #fff;
-      font-size: 2.5rem;
-      transform: translate(-50%, -50%);
-      animation: destello 1s ease forwards;
-      text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #ff0;
-      pointer-events: none;
-      z-index: 5;
+    position: absolute;
+    color: #fff;
+    font-size: 1.5rem;   /* 🔹 más pequeño de inicio */
+    transform: translate(-50%, -50%);
+    animation: destello 1s ease forwards;
+    text-shadow: 0 0 6px #fff, 0 0 12px #0ff, 0 0 18px #ff0; /* 🔹 sombras más suaves */
+    pointer-events: none;
+    z-index: 5;
     }
+    
     @keyframes destello {
       from { transform: scale(0); opacity: 1; }
-      to { transform: scale(3.5); opacity: 0; }
+      to { transform: scale(2); opacity: 0; } /* 🔹 menos grande al crecer */
     }
+
 
     /* 📱 Responsive */
     @media (max-width: 600px) {
@@ -135,6 +149,9 @@
 <body>
   <!-- 🌌 Fondo estrellado -->
   <div class="fondo-estrellas" id="fondo"></div>
+  
+  <!-- 🌻 Contenedor para girasoles -->
+  <div class="contenedor-girasoles" id="contenedor-girasoles"></div>
 
   <!-- 🎨 Títulos -->
   <div class="titulo">
@@ -178,7 +195,7 @@
       girasol.innerHTML = "🌻";
       girasol.style.left = Math.random() * 100 + "vw";
       girasol.style.fontSize = (Math.random() * 6 + 12) + "px";
-
+    
       const duracion = Math.random() * 6 + 6;
       const direccion = Math.random() < 0.5 ? -1 : 1;
       girasol.animate([
@@ -189,11 +206,12 @@
         iterations: 1,
         easing: "linear"
       });
-
-      document.body.appendChild(girasol);
+    
+      document.getElementById("contenedor-girasoles").appendChild(girasol);
       setTimeout(() => girasol.remove(), duracion * 1000);
     }
     setInterval(crearGirasol, 900);
+
 
     // 🎵 Música y ✨ destello al click
     const musica = document.getElementById("musica");
@@ -210,4 +228,5 @@
   </script>
 </body>
 </html>
+
 
