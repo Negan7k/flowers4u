@@ -46,29 +46,15 @@
       to { opacity: 1; transform: scale(1.2); }
     }
 
-    /* 🌟 Burbujitas luminosas */
+    /* 🌟 Burbujitas amarillas */
     .burbuja {
       position: fixed;
       bottom: -10px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 0));
-      opacity: 0.7;
+      background: radial-gradient(circle, rgba(255,215,0,0.9), rgba(255,215,0,0));
+      opacity: 0.8;
       pointer-events: none;
       z-index: 1;
-    }
-
-    /* 🌼 Pétalos amarillos */
-    .petalo {
-      position: fixed;
-      top: -10vh;
-      width: 8px;
-      height: 20px;
-      background: #ffd700;
-      border-radius: 50% 50% 40% 40%;
-      opacity: 0.9;
-      pointer-events: none;
-      z-index: 2;
-      box-shadow: 0 0 4px rgba(255, 215, 0, 0.6);
     }
 
     /* 🎨 Títulos */
@@ -76,24 +62,32 @@
       z-index: 2;
       margin-top: 20px;
     }
+
     .titulo h1, .flores {
-      font-family: "Times New Roman", Times, serif; /* SOLO títulos */
+      font-family: "Times New Roman", Times, serif;
       font-weight: bold;
       margin: 8px 0;
+      font-size: 1.9rem;
+      line-height: 1.2;
+    }
+
+    /* Texto con efecto dorado */
+    .texto {
       background: linear-gradient(270deg, #ffd700, #fff8dc, #daa520, #ffd700);
       background-size: 400% 400%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: oro 8s ease infinite, brillo 3s infinite alternate;
     }
-    .titulo h1 {
-      font-size: 1.6rem;
-      line-height: 1.2;
+
+    /* Emojis normales */
+    .emoji {
+      -webkit-text-fill-color: initial; 
+      background: none;
+      animation: none;
     }
-    .flores {
-      font-size: 1.9rem;
-      line-height: 1.2;
-    }
+
+    /* 🔥 Animación del degradado dorado */
     @keyframes oro {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -135,8 +129,20 @@
       object-fit: contain;
     }
 
-    /* Contenedor de pétalos */
-    .contenedor-girasoles {
+    /* 🌼 Pétalos cayendo */
+    .petalo {
+      position: fixed;
+      top: -10vh;
+      width: 14px;
+      height: 24px;
+      background: radial-gradient(circle at top, #ffd700 20%, #daa520 90%);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .contenedor-petalos {
       position: fixed;
       top: 0;
       left: 0;
@@ -165,8 +171,7 @@
 
     /* 📱 Responsive */
     @media (max-width: 600px) {
-      .titulo h1 { font-size: 1.3rem; line-height: 1.2; }
-      .flores { font-size: 1.7rem; line-height: 1.2; }
+      .titulo h1, .flores { font-size: 1.6rem; }
       .mensaje p { font-size: 0.85rem; }
       img { max-width: 380px; width: 95%; }
     }
@@ -177,12 +182,12 @@
   <div class="fondo-estrellas" id="fondo"></div>
   
   <!-- 🌼 Contenedor para pétalos -->
-  <div class="contenedor-girasoles" id="contenedor-girasoles"></div>
+  <div class="contenedor-petalos" id="contenedor-petalos"></div>
 
   <!-- 🎨 Títulos -->
   <div class="titulo">
-    <h1>FELIZ DIA DE LAS</h1>
-    <div class="flores">FLORES<br>AMARILLAS</div>
+    <h1><span class="emoji">❤️</span> <span class="texto">FELIZ 21 DE SEPTIEMBRE</span> <span class="emoji">❤️</span></h1>
+    <div class="flores"><span class="emoji">🌼</span> <span class="texto">PARA TI, MI NAYI</span> <span class="emoji">🌼</span></div>
   </div>
 
   <img src="20_09_2025.png" alt="Ramo de flores" loading="lazy">
@@ -219,48 +224,38 @@
       const petalo = document.createElement("div");
       petalo.classList.add("petalo");
       petalo.style.left = Math.random() * 100 + "vw";
+      petalo.style.width = (Math.random() * 8 + 10) + "px";
+      petalo.style.height = (Math.random() * 14 + 20) + "px";
 
-      // Tamaños más pequeños y delgados
-      petalo.style.width = (Math.random() * 4 + 5) + "px";
-      petalo.style.height = (Math.random() * 10 + 15) + "px";
-
-      // 🎨 Colores variados (amarillo, dorado, anaranjado claro)
-      const colores = ["#ffd700", "#fff8dc", "#f5deb3", "#ffcc33", "#ffdb58"];
-      petalo.style.background = colores[Math.floor(Math.random() * colores.length)];
-
-      petalo.style.transform = `rotate(${Math.random() * 360}deg)`;
-
-      const duracion = Math.random() * 5 + 5;
-      const desplazamiento = Math.random() * 60 - 30;
-
-      document.getElementById("contenedor-girasoles").appendChild(petalo);
-
+      const duracion = Math.random() * 5 + 6;
+      const direccion = Math.random() < 0.5 ? -1 : 1;
       petalo.animate([
         { transform: `translateX(0px) translateY(-10vh) rotate(0deg)`, opacity: 1 },
-        { transform: `translateX(${desplazamiento}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
+        { transform: `translateX(${direccion * 50}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
       ], {
         duration: duracion * 1000,
         iterations: 1,
-        easing: "ease-in"
+        easing: "linear"
       });
 
+      document.getElementById("contenedor-petalos").appendChild(petalo);
       setTimeout(() => petalo.remove(), duracion * 1000);
     }
-    setInterval(crearPetalo, 400);
+    setInterval(crearPetalo, 300); // 🌼 más pétalos
 
     // 🌟 Burbujas amarillas que suben
     function crearBurbuja() {
       const burbuja = document.createElement("div");
       burbuja.classList.add("burbuja");
-      const size = Math.random() * 6 + 3;
+      const size = Math.random() * 5 + 3;
       burbuja.style.width = size + "px";
       burbuja.style.height = size + "px";
       burbuja.style.left = Math.random() * 100 + "vw";
       document.body.appendChild(burbuja);
 
-      const duracion = Math.random() * 6 + 4;
+      const duracion = Math.random() * 5 + 3;
       burbuja.animate([
-        { transform: `translateY(0) scale(1)`, opacity: 0.6 },
+        { transform: `translateY(0) scale(1)`, opacity: 0.7 },
         { transform: `translateY(-110vh) scale(0.5)`, opacity: 0 }
       ], {
         duration: duracion * 1000,
@@ -270,7 +265,7 @@
 
       setTimeout(() => burbuja.remove(), duracion * 1000);
     }
-    setInterval(crearBurbuja, 500);
+    setInterval(crearBurbuja, 250); // 🌟 más burbujas
 
     // 🎵 Música y ✨ destello al click
     const musica = document.getElementById("musica");
