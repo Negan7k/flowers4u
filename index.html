@@ -23,8 +23,9 @@
     h1 {
       font-size: 2rem;
       color: #b71c1c;
-      margin: 5px 0 10px 0; /* menos espacio */
+      margin: 5px 0 10px 0;
       animation: fadeIn 3s ease-in-out;
+      z-index: 2;
     }
 
     p {
@@ -33,17 +34,20 @@
       max-width: 90%;
       animation: fadeIn 5s ease-in-out;
       line-height: 1.5;
-      margin: 8px 0; /* más compacto */
+      margin: 8px 0;
+      z-index: 2;
     }
 
     img {
       width: 100%;
-      max-width: 320px;   /* más grande */
-      transform: scale(1.15); /* zoom */
-      border-radius: 20px;
-      box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+      max-width: 320px;
+      transform: scale(1.15);
+      background: transparent;
+      border: none;
+      box-shadow: none;
       animation: fadeIn 2s ease-in-out;
-      margin: 8px 0; /* menos espacio */
+      margin: 8px 0;
+      z-index: 2;
     }
 
     @keyframes fadeIn {
@@ -51,13 +55,14 @@
       to {opacity: 1;}
     }
 
-    /* Corazones flotando */
+    /* ❤️ Corazones flotando */
     .heart {
       position: fixed;
       color: red;
       font-size: 24px;
-      animation: floatUp 6s linear infinite;
-      z-index: 0;
+      animation: floatUp 6s linear forwards;
+      pointer-events: none;
+      z-index: 1;
     }
 
     @keyframes floatUp {
@@ -65,14 +70,36 @@
       to {transform: translateY(-10vh) scale(1.5);}
     }
 
-    /* 📱 Ajustes para móviles */
+    /* ✨ Estrellitas diagonales */
+    .estrella {
+      position: fixed;
+      color: #fff;
+      font-size: 12px;
+      animation: moverEstrella 4s linear forwards;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.9;
+      text-shadow: 0 0 5px #fff, 0 0 10px #ffd700;
+    }
+
+    @keyframes moverEstrella {
+      from {
+        transform: translateY(100vh) translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-20vh) translateX(50vw);
+        opacity: 0;
+      }
+    }
+
+    /* 📱 Responsive */
     @media (max-width: 600px) {
       h1 { font-size: 1.6rem; }
       p { font-size: 1rem; }
       img { max-width: 280px; transform: scale(1.1); }
     }
 
-    /* 💻 Ajustes para pantallas grandes */
     @media (min-width: 1000px) {
       h1 { font-size: 3rem; }
       p { font-size: 1.4rem; max-width: 700px; }
@@ -82,35 +109,48 @@
 </head>
 <body>
   <h1>🌹 Feliz Día de las Flores 🌹</h1>
-  <img src="20_09_25.png" alt="Ramo de flores">
+  <img src="20_09_2025.png" alt="Ramo de flores">
   <p>
     Cada pétalo amarillo es un rayito de sol que quiero regalarte hoy.  
     Gracias por llenar mi vida de alegría, ternura y amor.  
     💛 Eres mi persona favorita 💛
   </p>
 
-  <!-- Música de fondo -->
-  <audio autoplay loop>
+  <!-- 🎶 Música -->
+  <audio id="musica" loop>
     <source src="cancion.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
   </audio>
 
   <script>
-    // Crear corazones flotando
-    function createHeart() {
+    // ❤️ Corazones flotando
+    function crearCorazon() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
       heart.innerHTML = "❤️";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = Math.random() * 20 + 20 + "px";
       document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
+      setTimeout(() => heart.remove(), 6000);
     }
+    setInterval(crearCorazon, 500);
 
-    setInterval(createHeart, 500);
+    // ✨ Estrellitas diagonales
+    function crearEstrella() {
+      const estrella = document.createElement("div");
+      estrella.classList.add("estrella");
+      estrella.innerHTML = "✨";
+      estrella.style.left = Math.random() * 100 + "vw";
+      estrella.style.fontSize = (Math.random() * 10 + 10) + "px";
+      document.body.appendChild(estrella);
+      setTimeout(() => estrella.remove(), 4000);
+    }
+    setInterval(crearEstrella, 300);
+
+    // 🎵 Música al tocar la pantalla
+    const musica = document.getElementById("musica");
+    document.body.addEventListener("click", () => {
+      musica.play();
+    }, { once: true });
   </script>
 </body>
 </html>
