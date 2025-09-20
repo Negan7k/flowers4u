@@ -39,58 +39,64 @@
       border-radius: 50%;
       opacity: 0.8;
       animation: parpadeo 2s infinite alternate;
+      box-shadow: 0 0 6px #fff, 0 0 12px #ffd700;
     }
     @keyframes parpadeo {
-      from { opacity: 0.2; }
-      to { opacity: 1; }
+      from { opacity: 0.3; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* 🌟 Burbujitas luminosas */
+    .burbuja {
+      position: fixed;
+      bottom: -10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(255,255,255,0));
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 1;
     }
 
     /* 🎨 Títulos */
-    .titulo {
-      z-index: 2;
-      margin-top: 20px;
-    }
-    .titulo h1, .flores {
-      font-family: "Times New Roman", Times, serif;
-      font-weight: bold;
-      margin: 8px 0;
-      background: linear-gradient(45deg, #ffd700, #fff8dc, #daa520);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 8px rgba(255,215,0,0.6);
-      position: relative;
-      overflow: hidden;
-    }
+      .titulo {
+        z-index: 2;
+        margin-top: 20px;
+      }
+      
+      .titulo h1, .flores {
+        font-family: "Times New Roman", Times, serif; /* SOLO títulos */
+        font-weight: bold;
+        margin: 8px 0;
+        background: linear-gradient(270deg, #ffd700, #fff8dc, #daa520, #ffd700);
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: oro 8s ease infinite, brillo 3s infinite alternate;
+      }
+      
+      /* Tamaños */
+      .titulo h1 {
+        font-size: 1.6rem;
+        line-height: 1.2;
+      }
+      .flores {
+        font-size: 1.9rem;
+        line-height: 1.2;
+      }
+      
+      /* 🔥 Animación del degradado dorado */
+      @keyframes oro {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      /* ✨ Brillo pulsante */
+      @keyframes brillo {
+        from { text-shadow: 0 0 8px rgba(255,215,0,0.6), 0 0 16px rgba(255,215,0,0.4); }
+        to   { text-shadow: 0 0 20px rgba(255,215,0,1), 0 0 40px rgba(255,215,0,0.8); }
+      }
 
-    /* ✨ Brillo animado en el título */
-    .titulo h1::after, .flores::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.7),
-        transparent
-      );
-      animation: brillo 3s infinite;
-    }
-    @keyframes brillo {
-      0% { left: -75%; }
-      100% { left: 125%; }
-    }
-
-    .titulo h1 {
-      font-size: 1.6rem;
-      line-height: 1.2;
-    }
-    .flores {
-      font-size: 1.9rem;
-      line-height: 1.2;
-    }
 
     /* 📜 Mensaje */
     .mensaje {
@@ -108,7 +114,7 @@
       line-height: 1.5;
       margin: 6px 0;
       text-align: center;
-      opacity: 0; /* 👈 empieza oculto */
+      opacity: 0;
     }
 
     img {
@@ -127,7 +133,7 @@
     .girasol {
       position: fixed;
       top: -10vh;
-      font-size: 18px;
+      font-size: 20px;
       pointer-events: none;
       z-index: 1;
     }
@@ -146,16 +152,16 @@
     .destello {
       position: absolute;
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 2rem;
       transform: translate(-50%, -50%);
-      animation: destello 1s ease forwards;
-      text-shadow: 0 0 6px #fff, 0 0 12px #0ff, 0 0 18px #ff0;
+      animation: destello 1.2s ease forwards;
+      text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #ff0;
       pointer-events: none;
       z-index: 5;
     }
     @keyframes destello {
       from { transform: scale(0); opacity: 1; }
-      to { transform: scale(2); opacity: 0; }
+      to { transform: scale(2.5); opacity: 0; }
     }
 
     /* 📱 Responsive */
@@ -174,7 +180,7 @@
   <!-- 🌻 Contenedor para girasoles -->
   <div class="contenedor-girasoles" id="contenedor-girasoles"></div>
 
-  <!-- 🎨 Títulos -->
+  <!-- 🎨 Títulos (estáticos con brillo) -->
   <div class="titulo">
     <h1>FELIZ DIA DE LAS</h1>
     <div class="flores">FLORES<br>AMARILLAS</div>
@@ -215,23 +221,45 @@
       girasol.classList.add("girasol");
       girasol.innerHTML = "🌻";
       girasol.style.left = Math.random() * 100 + "vw";
-      girasol.style.fontSize = (Math.random() * 6 + 12) + "px";
-    
-      const duracion = Math.random() * 6 + 6;
+      girasol.style.fontSize = (Math.random() * 10 + 18) + "px";
+      const duracion = Math.random() * 5 + 5;
       const direccion = Math.random() < 0.5 ? -1 : 1;
       girasol.animate([
         { transform: `translateX(0px) translateY(-10vh) rotate(0deg)`, opacity: 1 },
-        { transform: `translateX(${direccion * 40}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
+        { transform: `translateX(${direccion * 60}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
       ], {
         duration: duracion * 1000,
         iterations: 1,
         easing: "linear"
       });
-    
       document.getElementById("contenedor-girasoles").appendChild(girasol);
       setTimeout(() => girasol.remove(), duracion * 1000);
     }
-    setInterval(crearGirasol, 900);
+    setInterval(crearGirasol, 700);
+
+    // 🌟 Burbujas que suben
+    function crearBurbuja() {
+      const burbuja = document.createElement("div");
+      burbuja.classList.add("burbuja");
+      const size = Math.random() * 8 + 4;
+      burbuja.style.width = size + "px";
+      burbuja.style.height = size + "px";
+      burbuja.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(burbuja);
+
+      const duracion = Math.random() * 6 + 4;
+      burbuja.animate([
+        { transform: `translateY(0) scale(1)`, opacity: 0.6 },
+        { transform: `translateY(-110vh) scale(0.5)`, opacity: 0 }
+      ], {
+        duration: duracion * 1000,
+        iterations: 1,
+        easing: "linear"
+      });
+
+      setTimeout(() => burbuja.remove(), duracion * 1000);
+    }
+    setInterval(crearBurbuja, 400);
 
     // 🎵 Música y ✨ destello al click
     const musica = document.getElementById("musica");
@@ -243,31 +271,30 @@
       destello.style.left = e.pageX + "px";
       destello.style.top = e.pageY + "px";
       document.body.appendChild(destello);
-      setTimeout(() => destello.remove(), 1000);
+      setTimeout(() => destello.remove(), 1200);
     });
 
-    // 💌 Efecto máquina de escribir en frases
+    // 💌 Frases con efecto de máquina
     const frases = document.querySelectorAll(".mensaje p");
     let indexFrase = 0;
 
-    function escribirFrase(frase, callback) {
-      const texto = frase.textContent;
-      frase.textContent = "";
-      frase.style.opacity = 1;
+    function escribirTexto(elemento, texto, callback) {
+      elemento.textContent = "";
+      elemento.style.opacity = 1;
       let i = 0;
       const intervalo = setInterval(() => {
-        frase.textContent += texto[i];
+        elemento.textContent += texto[i];
         i++;
         if (i === texto.length) {
           clearInterval(intervalo);
           if (callback) setTimeout(callback, 600);
         }
-      }, 50); // velocidad de escritura
+      }, 70);
     }
 
     function mostrarFrases() {
       if (indexFrase < frases.length) {
-        escribirFrase(frases[indexFrase], () => {
+        escribirTexto(frases[indexFrase], frases[indexFrase].textContent, () => {
           indexFrase++;
           mostrarFrases();
         });
