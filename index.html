@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para ti 💛</title>
+  <title> Nayara 💛</title>
   <style>
     body {
       margin: 0;
@@ -11,15 +11,16 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
       background: #000;
+      color: #fff;
     }
 
-    /* 🌌 Fondo estrellado animado */
+    /* 🌌 Fondo estrellado */
     .fondo-estrellas {
       position: fixed;
       top: 0;
@@ -29,7 +30,6 @@
       z-index: 0;
       overflow: hidden;
     }
-
     .estrella {
       position: absolute;
       background: white;
@@ -37,21 +37,32 @@
       opacity: 0.8;
       animation: parpadeo 2s infinite alternate;
     }
-
     @keyframes parpadeo {
       from { opacity: 0.2; }
       to { opacity: 1; }
     }
 
-    h1 {
-      font-size: 2rem;
-      color: #ffd700;
-      margin: 5px 0 15px 0;
-      text-shadow: 0 0 8px #fff, 0 0 15px #ff8, 0 0 25px #ffd700;
+    /* 🎨 Títulos */
+    .titulo {
       z-index: 2;
-      position: relative;
+      margin-top: 20px;
+    }
+    .titulo h1, .flores {
+      font-weight: bold;
+      margin: 8px 0;
+      background: linear-gradient(45deg, #ffd700, #fff8dc, #daa520);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 8px rgba(255,215,0,0.6);
+    }
+    .titulo h1 {
+      font-size: 1.6rem;
+    }
+    .flores {
+      font-size: 1.9rem;
     }
 
+    /* 📜 Mensaje */
     .mensaje {
       display: flex;
       flex-direction: column;
@@ -59,24 +70,21 @@
       justify-content: center;
       z-index: 2;
       position: relative;
+      margin-top: 15px;
     }
-
     .mensaje p {
-      font-size: 1.1rem;
+      font-size: 0.95rem; /* un poco más pequeño */
       color: #fff;
-      max-width: 90%;
-      line-height: 1.6;
-      margin: 10px 0;
+      line-height: 1.5;
+      margin: 6px 0;
+      text-align: center;
     }
 
     img {
       width: 100%;
-      max-width: 320px;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      margin: 8px 0 15px 0;
-      z-index: 2;
+      max-width: 340px;
+      margin: 15px 0;
+      z-index: 1;
       position: relative;
       pointer-events: none;
     }
@@ -88,43 +96,30 @@
       font-size: 18px;
       pointer-events: none;
       z-index: 1;
-      animation: caerGirasol linear forwards;
-    }
-
-    @keyframes caerGirasol {
-      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-      50% { transform: translateX(15px) translateY(50vh) rotate(180deg); }
-      100% { transform: translateX(-15px) translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
     /* ✨ Destello al click */
     .destello {
       position: absolute;
       color: #fff;
-      font-size: 1.8rem; /* más grande */
+      font-size: 2.5rem;
       transform: translate(-50%, -50%);
       animation: destello 1s ease forwards;
-      text-shadow: 0 0 8px #fff, 0 0 15px #0ff, 0 0 25px #ff0;
+      text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #ff0;
       pointer-events: none;
       z-index: 5;
     }
-
     @keyframes destello {
       from { transform: scale(0); opacity: 1; }
-      to { transform: scale(3); opacity: 0; }
+      to { transform: scale(3.5); opacity: 0; }
     }
 
     /* 📱 Responsive */
     @media (max-width: 600px) {
-      h1 { font-size: 1.6rem; }
-      .mensaje p { font-size: 1rem; }
-      img { max-width: 260px; }
-    }
-
-    @media (min-width: 1000px) {
-      h1 { font-size: 3rem; }
-      .mensaje p { font-size: 1.4rem; max-width: 700px; }
-      img { max-width: 340px; }
+      .titulo h1 { font-size: 1.3rem; }
+      .flores { font-size: 1.5rem; }
+      .mensaje p { font-size: 0.85rem; }
+      img { max-width: 280px; }
     }
   </style>
 </head>
@@ -132,9 +127,15 @@
   <!-- 🌌 Fondo estrellado -->
   <div class="fondo-estrellas" id="fondo"></div>
 
-  <h1>🌹 Feliz Día de las Flores 🌹</h1>
+  <!-- 🎨 Títulos -->
+  <div class="titulo">
+    <h1>Feliz Día De Las</h1>
+    <div class="flores">FLORES<br>AMARILLAS</div>
+  </div>
+
   <img src="20_09_2025.png" alt="Ramo de flores" loading="lazy">
-  
+
+  <!-- 📜 Frases -->
   <div class="mensaje">
     <p>💛 Cada pétalo amarillo es un rayito de sol que quiero regalarte hoy.</p>
     <p>🌹 Gracias por llenar mi vida de alegría, ternura y amor.</p>
@@ -147,12 +148,12 @@
   </audio>
 
   <script>
-    // 🌟 Generar muchas estrellas fijas con parpadeo
+    // 🌟 Estrellas en el fondo
     const fondo = document.getElementById("fondo");
-    for (let i = 0; i < 120; i++) { // más estrellas
+    for (let i = 0; i < 200; i++) {
       const estrella = document.createElement("div");
       estrella.classList.add("estrella");
-      const size = Math.random() * 2 + 1; 
+      const size = Math.random() * 2 + 1;
       estrella.style.width = size + "px";
       estrella.style.height = size + "px";
       estrella.style.top = Math.random() * 100 + "vh";
@@ -167,9 +168,19 @@
       girasol.classList.add("girasol");
       girasol.innerHTML = "🌻";
       girasol.style.left = Math.random() * 100 + "vw";
-      girasol.style.fontSize = (Math.random() * 12 + 15) + "px";
-      const duracion = Math.random() * 5 + 6;
-      girasol.style.animationDuration = duracion + "s";
+      girasol.style.fontSize = (Math.random() * 6 + 12) + "px";
+
+      const duracion = Math.random() * 6 + 6;
+      const direccion = Math.random() < 0.5 ? -1 : 1;
+      girasol.animate([
+        { transform: `translateX(0px) translateY(-10vh) rotate(0deg)`, opacity: 1 },
+        { transform: `translateX(${direccion * 40}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
+      ], {
+        duration: duracion * 1000,
+        iterations: 1,
+        easing: "linear"
+      });
+
       document.body.appendChild(girasol);
       setTimeout(() => girasol.remove(), duracion * 1000);
     }
@@ -179,7 +190,6 @@
     const musica = document.getElementById("musica");
     document.body.addEventListener("click", (e) => {
       musica.play().catch(()=>{});
-
       const destello = document.createElement("div");
       destello.classList.add("destello");
       destello.innerHTML = "✨";
