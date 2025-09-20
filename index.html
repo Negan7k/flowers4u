@@ -23,7 +23,7 @@
     h1 {
       font-size: 2rem;
       color: #b71c1c;
-      margin: 10px 0;
+      margin: 5px 0 10px 0; /* menos espacio */
       animation: fadeIn 3s ease-in-out;
     }
 
@@ -33,15 +33,17 @@
       max-width: 90%;
       animation: fadeIn 5s ease-in-out;
       line-height: 1.5;
+      margin: 8px 0; /* más compacto */
     }
 
     img {
       width: 100%;
-      max-width: 250px;
+      max-width: 320px;   /* más grande */
+      transform: scale(1.15); /* zoom */
       border-radius: 20px;
       box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
       animation: fadeIn 2s ease-in-out;
-      margin: 15px 0;
+      margin: 8px 0; /* menos espacio */
     }
 
     @keyframes fadeIn {
@@ -65,29 +67,16 @@
 
     /* 📱 Ajustes para móviles */
     @media (max-width: 600px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-      img {
-        max-width: 200px;
-      }
+      h1 { font-size: 1.6rem; }
+      p { font-size: 1rem; }
+      img { max-width: 280px; transform: scale(1.1); }
     }
 
     /* 💻 Ajustes para pantallas grandes */
     @media (min-width: 1000px) {
-      h1 {
-        font-size: 3rem;
-      }
-      p {
-        font-size: 1.4rem;
-        max-width: 700px;
-      }
-      img {
-        max-width: 320px;
-      }
+      h1 { font-size: 3rem; }
+      p { font-size: 1.4rem; max-width: 700px; }
+      img { max-width: 350px; transform: scale(1.2); }
     }
   </style>
 </head>
