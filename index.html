@@ -16,10 +16,10 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
       overflow: hidden;
-      background: #000; /* fondo oscuro base */
+      background: #000;
     }
 
-    /* 🌌 Estrellas fijas de fondo */
+    /* 🌌 Fondo estrellado fijo detrás */
     .fondo-estrellas {
       position: fixed;
       top: 0;
@@ -33,7 +33,7 @@
                   radial-gradient(1px 1px at 40% 60%, #fff, transparent),
                   radial-gradient(2px 2px at 90% 40%, #fff, transparent);
       background-color: #000010;
-      z-index: 0;
+      z-index: 0; /* siempre al fondo */
     }
 
     h1 {
@@ -41,8 +41,9 @@
       color: #ffd700;
       margin: 5px 0 10px 0;
       animation: fadeIn 3s ease-in-out;
-      z-index: 2;
       text-shadow: 0 0 10px #fff, 0 0 20px #ff8, 0 0 30px #ffd700;
+      z-index: 2;
+      position: relative;
     }
 
     .mensaje p {
@@ -51,25 +52,21 @@
       max-width: 90%;
       line-height: 1.5;
       margin: 8px 0;
-      z-index: 2;
       animation: fadeIn 5s ease-in-out;
+      z-index: 2;
+      position: relative;
     }
 
     img {
       width: 100%;
       max-width: 340px;
-      transform: scale(1.15);
       background: transparent;
       border: none;
       box-shadow: none;
       margin: 8px 0 15px 0;
-      z-index: 4;
+      z-index: 2;
+      position: relative;
       pointer-events: none;
-      transition: filter 0.8s ease, opacity 0.8s ease;
-    }
-    img.loading {
-      filter: blur(15px);
-      opacity: 0.3;
     }
 
     @keyframes fadeIn {
@@ -77,7 +74,7 @@
       to {opacity: 1;}
     }
 
-    /* 🌻 Girasoles cayendo natural */
+    /* 🌻 Girasoles cayendo */
     .girasol {
       position: fixed;
       top: -10vh;
@@ -92,7 +89,7 @@
       100% { transform: translateX(-20px) translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
-    /* ✨ Destello galáctico al click */
+    /* ✨ Destello */
     .destello {
       position: absolute;
       color: #fff;
@@ -112,13 +109,13 @@
     @media (max-width: 600px) {
       h1 { font-size: 1.6rem; }
       .mensaje p { font-size: 1rem; }
-      img { max-width: 280px; transform: scale(1.1); }
+      img { max-width: 280px; }
     }
 
     @media (min-width: 1000px) {
       h1 { font-size: 3rem; }
       .mensaje p { font-size: 1.4rem; max-width: 700px; }
-      img { max-width: 350px; transform: scale(1.2); }
+      img { max-width: 350px; }
     }
   </style>
 </head>
@@ -127,7 +124,7 @@
   <div class="fondo-estrellas"></div>
 
   <h1>🌹 Feliz Día de las Flores 🌹</h1>
-  <img src="20_09_2025.png" alt="Ramo de flores" loading="lazy" class="loading">
+  <img src="20_09_2025.png" alt="Ramo de flores" loading="lazy">
   
   <div class="mensaje">
     <p>💛 Cada pétalo amarillo es un rayito de sol que quiero regalarte hoy.</p>
@@ -141,13 +138,7 @@
   </audio>
 
   <script>
-    // 🌸 Imagen con efecto blur al cargar
-    const imagen = document.querySelector("img");
-    imagen.addEventListener("load", () => {
-      imagen.classList.remove("loading");
-    });
-
-    // 🌻 Girasoles cayendo más naturales
+    // 🌻 Girasoles cayendo natural
     function crearGirasol() {
       const girasol = document.createElement("div");
       girasol.classList.add("girasol");
@@ -166,7 +157,6 @@
     document.body.addEventListener("click", (e) => {
       musica.play().catch(()=>{});
 
-      // Crear 3 destellos al azar cerca del click
       for (let i = 0; i < 3; i++) {
         const destello = document.createElement("div");
         destello.classList.add("destello");
@@ -176,7 +166,7 @@
         document.body.appendChild(destello);
         setTimeout(() => destello.remove(), 1000);
       }
-    }, { once: false });
+    });
   </script>
 </body>
 </html>
