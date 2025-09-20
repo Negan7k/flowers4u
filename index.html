@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para ti 💛</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      background: linear-gradient(135deg, #fff8e1, #ffe0b2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    h1 {
+      position: absolute;
+      top: 20px;
+      color: #b71c1c;
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    }
+
+    p {
+      position: absolute;
+      bottom: 20px;
+      color: #4e342e;
+      font-size: 1.3rem;
+      max-width: 600px;
+      text-align: center;
+      padding: 10px;
+    }
+
+    img {
+      max-width: 250px;
+      border-radius: 20px;
+      box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌹 Feliz Día de las Flores 🌹</h1>
+  <img src="20_09_25.png" alt="Ramo de flores">
+  <p>
+    Cada pétalo amarillo es un rayito de sol que quiero regalarte hoy.<br>
+    Gracias por llenar mi vida de alegría, ternura y amor.<br>
+    💛 Eres mi persona favorita 💛
+  </p>
+
+  <!-- Música de fondo -->
+  <audio autoplay loop>
+    <source src="cancion.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Heart {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + 20;
+        this.size = Math.random() * 20 + 15;
+        this.speed = Math.random() * 2 + 1;
+        this.alpha = Math.random() * 0.5 + 0.5;
+      }
+
+      draw() {
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.bezierCurveTo(this.x - this.size/2, this.y - this.size/2,
+                          this.x - this.size, this.y + this.size/3,
+                          this.x, this.y + this.size);
+        ctx.bezierCurveTo(this.x + this.size, this.y + this.size/3,
+                          this.x + this.size/2, this.y - this.size/2,
+                          this.x, this.y);
+        ctx.fill();
+      }
+
+      update() {
+        this.y -= this.speed;
+        if (this.y < -10) {
+          this.y = canvas.height + 10;
+          this.x = Math.random() * canvas.width;
+        }
+        this.draw();
+      }
+    }
+
+    const hearts = [];
+    for (let i = 0; i < 30; i++) {
+      hearts.push(new Heart());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hearts.forEach(h => h.update());
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
