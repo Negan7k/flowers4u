@@ -17,6 +17,8 @@
       text-align: center;
       overflow-x: hidden;
       overflow-y: auto;
+      width: 100vw;        /* asegura que nunca se pase del ancho */
+      box-sizing: border-box;
       background: #000;
       color: #fff;
     }
@@ -82,12 +84,16 @@
     }
 
     img {
-      width: 90%;
+      width: 100%;
       max-width: 450px;
       margin: 15px 0;
       z-index: 1;
       position: relative;
       pointer-events: none;
+      /* 🔒 Evita que en móvil se desborde */
+      height: auto;
+      display: block;
+      object-fit: contain;
     }
 
     /* 🌻 Girasoles cayendo */
@@ -203,6 +209,7 @@
   </script>
 </body>
 </html>
+
 
 
 
