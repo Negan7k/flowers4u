@@ -19,21 +19,26 @@
       background: #000;
     }
 
-    /* 🌌 Fondo estrellado fijo detrás */
+    /* 🌌 Fondo estrellado fijo */
     .fondo-estrellas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(2px 2px at 20% 30%, #fff, transparent),
-                  radial-gradient(1.5px 1.5px at 80% 70%, #ffd, transparent),
-                  radial-gradient(1.5px 1.5px at 50% 80%, #fff, transparent),
-                  radial-gradient(2px 2px at 70% 20%, #ffe, transparent),
-                  radial-gradient(1px 1px at 40% 60%, #fff, transparent),
-                  radial-gradient(2px 2px at 90% 40%, #fff, transparent);
+      background:
+        radial-gradient(1px 1px at 10% 20%, #fff, transparent),
+        radial-gradient(2px 2px at 30% 40%, #ffd, transparent),
+        radial-gradient(1px 1px at 50% 70%, #fff, transparent),
+        radial-gradient(2px 2px at 80% 90%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 70% 30%, #ffe, transparent),
+        radial-gradient(1px 1px at 90% 60%, #fff, transparent),
+        radial-gradient(1px 1px at 20% 80%, #fff, transparent),
+        radial-gradient(2px 2px at 60% 10%, #fff, transparent),
+        radial-gradient(1px 1px at 40% 50%, #ffd, transparent),
+        radial-gradient(1px 1px at 75% 75%, #fff, transparent);
       background-color: #000010;
-      z-index: 0; /* siempre al fondo */
+      z-index: 0;
     }
 
     h1 {
@@ -41,7 +46,7 @@
       color: #ffd700;
       margin: 5px 0 10px 0;
       animation: fadeIn 3s ease-in-out;
-      text-shadow: 0 0 10px #fff, 0 0 20px #ff8, 0 0 30px #ffd700;
+      text-shadow: 0 0 8px #fff, 0 0 15px #ff8, 0 0 25px #ffd700;
       z-index: 2;
       position: relative;
     }
@@ -52,14 +57,13 @@
       max-width: 90%;
       line-height: 1.5;
       margin: 8px 0;
-      animation: fadeIn 5s ease-in-out;
       z-index: 2;
       position: relative;
     }
 
     img {
       width: 100%;
-      max-width: 340px;
+      max-width: 320px;
       background: transparent;
       border: none;
       box-shadow: none;
@@ -78,7 +82,7 @@
     .girasol {
       position: fixed;
       top: -10vh;
-      font-size: 20px;
+      font-size: 18px; /* un poco más pequeños */
       pointer-events: none;
       z-index: 1;
       animation: caerGirasol linear forwards;
@@ -93,29 +97,29 @@
     .destello {
       position: absolute;
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 1rem; /* más pequeño */
       transform: translate(-50%, -50%);
-      animation: destello 1s ease forwards;
-      text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #ff0;
+      animation: destello 0.8s ease forwards;
+      text-shadow: 0 0 6px #fff, 0 0 10px #0ff, 0 0 15px #ff0;
       pointer-events: none;
       z-index: 5;
     }
     @keyframes destello {
       from { transform: scale(0); opacity: 1; }
-      to { transform: scale(3); opacity: 0; }
+      to { transform: scale(2); opacity: 0; }
     }
 
     /* 📱 Responsive */
     @media (max-width: 600px) {
       h1 { font-size: 1.6rem; }
       .mensaje p { font-size: 1rem; }
-      img { max-width: 280px; }
+      img { max-width: 260px; }
     }
 
     @media (min-width: 1000px) {
       h1 { font-size: 3rem; }
       .mensaje p { font-size: 1.4rem; max-width: 700px; }
-      img { max-width: 350px; }
+      img { max-width: 340px; }
     }
   </style>
 </head>
@@ -138,34 +142,32 @@
   </audio>
 
   <script>
-    // 🌻 Girasoles cayendo natural
+    // 🌻 Girasoles cayendo
     function crearGirasol() {
       const girasol = document.createElement("div");
       girasol.classList.add("girasol");
       girasol.innerHTML = "🌻";
       girasol.style.left = Math.random() * 100 + "vw";
-      girasol.style.fontSize = (Math.random() * 20 + 25) + "px";
+      girasol.style.fontSize = (Math.random() * 15 + 15) + "px";
       const duracion = Math.random() * 5 + 6;
       girasol.style.animationDuration = duracion + "s";
       document.body.appendChild(girasol);
       setTimeout(() => girasol.remove(), duracion * 1000);
     }
-    setInterval(crearGirasol, 900);
+    setInterval(crearGirasol, 1000);
 
-    // 🎵 Música y ✨ destellos al click
+    // 🎵 Música y ✨ destello único al click
     const musica = document.getElementById("musica");
     document.body.addEventListener("click", (e) => {
       musica.play().catch(()=>{});
 
-      for (let i = 0; i < 3; i++) {
-        const destello = document.createElement("div");
-        destello.classList.add("destello");
-        destello.innerHTML = "✨";
-        destello.style.left = (e.pageX + (Math.random() * 60 - 30)) + "px";
-        destello.style.top = (e.pageY + (Math.random() * 60 - 30)) + "px";
-        document.body.appendChild(destello);
-        setTimeout(() => destello.remove(), 1000);
-      }
+      const destello = document.createElement("div");
+      destello.classList.add("destello");
+      destello.innerHTML = "✨";
+      destello.style.left = e.pageX + "px";
+      destello.style.top = e.pageY + "px";
+      document.body.appendChild(destello);
+      setTimeout(() => destello.remove(), 800);
     });
   </script>
 </body>
