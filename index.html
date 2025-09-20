@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para ti 💛</title>
   <style>
     body {
@@ -18,203 +18,164 @@
       box-sizing: border-box;
       text-align: center;
 
-      /* Fondo oscuro fijo para que destaque todo */
-      background: radial-gradient(circle at top, #2b1055 0%, #0b0216 60%, #000000 100%);
+      /* Fondo fijo galáctico */
+      background: #1a1a40;
     }
 
     h1 {
       font-size: 2rem;
       color: #ffd700;
-      margin: 5px 0 10px 0;
+      margin: 5px 0 15px 0;
       animation: fadeIn 2s ease-in-out;
-      z-index: 4;
+      z-index: 2;
       text-shadow: 0 0 10px #fff, 0 0 20px #ff8;
     }
 
-    p {
-      font-size: 1.05rem;
+    /* 🌟 Texto brillante en todas las frases */
+    .mensaje p {
+      font-size: 1.1rem;
       color: #fff;
       max-width: 90%;
-      animation: fadeIn 3s ease-in-out;
-      line-height: 1.45;
-      margin: 6px 0;
-      z-index: 4;
-      text-shadow: 0 0 4px #000;
+      margin: 10px 0;
+      line-height: 1.5;
+      opacity: 0;
+      animation: glowIn 2s ease forwards;
+      text-shadow: 0 0 8px #ffd700, 0 0 16px #ffea00;
     }
 
+    .mensaje p:nth-child(1) { animation-delay: 0s; }
+    .mensaje p:nth-child(2) { animation-delay: 2s; }
+    .mensaje p:nth-child(3) { animation-delay: 4s; }
+
+    @keyframes glowIn {
+      from { opacity: 0; text-shadow: none; }
+      to { opacity: 1; text-shadow: 0 0 8px #ffd700, 0 0 16px #ffea00; }
+    }
+
+    /* 📸 Imagen con carga suave */
     img {
       width: 100%;
       max-width: 340px;
       transform: scale(1.15);
       background: transparent;
       border: none;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-      animation: fadeIn 2s ease-in-out;
-      margin: 8px 0;
+      box-shadow: none;
+      margin: 8px 0 15px 0;
       z-index: 4;
       pointer-events: none;
+      transition: filter 0.8s ease, opacity 0.8s ease;
+    }
+
+    img.loading {
+      filter: blur(15px);
+      opacity: 0.3;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
 
-    /* 💛 Bolitas amarillas flotando hacia arriba (pequeñas) */
-    .destelloUp {
-      position: fixed;
-      background: radial-gradient(circle, #fff7a8 0%, #ffd700 60%);
-      border-radius: 50%;
-      animation: subir 5s linear forwards;
-      pointer-events: none;
-      z-index: 2;
-      box-shadow: 0 0 10px rgba(255,215,0,0.9), 0 0 18px rgba(255,235,59,0.6);
-      opacity: 0.95;
-    }
-
-    @keyframes subir {
-      from { transform: translateY(100vh) scale(0.6); opacity: 1; }
-      to   { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-    }
-
-    /* 🌻 Lluvia de girasoles (desde arriba hacia abajo) */
+    /* 🌻 Girasoles cayendo */
     .girasol {
       position: fixed;
-      font-size: 22px;
-      animation: caer 6s linear forwards;
+      font-size: 18px;
+      animation: caerGirasol 6s linear forwards;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.97;
-      filter: drop-shadow(0 6px 6px rgba(0,0,0,0.6));
     }
 
-    @keyframes caer {
-      from { transform: translateY(-20vh) rotate(0deg); opacity: 1; }
-      to   { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    @keyframes caerGirasol {
+      from { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 1; }
+      to { transform: translateY(110vh) translateX(20vw) rotate(360deg); opacity: 0; }
     }
 
-    /* ✨ Destello puntual al click */
-    .destello {
-      position: absolute;
-      color: #fff;
-      font-size: 1.8rem;
-      transform: translate(-50%, -50%);
-      animation: destello 1s ease forwards;
-      text-shadow: 0 0 12px #fff, 0 0 24px #ffd700, 0 0 36px #fff176;
+    /* 🔆 Bolitas amarillas subiendo */
+    .bolita {
+      position: fixed;
+      background: #ffea00;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: subirBolita 4s linear forwards;
       pointer-events: none;
-      z-index: 5;
+      z-index: 0;
+      box-shadow: 0 0 6px #ffd700;
     }
 
-    @keyframes destello {
-      from { transform: scale(0); opacity: 1; }
-      to   { transform: scale(3); opacity: 0; }
+    @keyframes subirBolita {
+      from { transform: translateY(100vh) scale(0.5); opacity: 0.9; }
+      to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
     /* 📱 Responsive */
     @media (max-width: 600px) {
       h1 { font-size: 1.6rem; }
-      p  { font-size: 0.98rem; }
-      img { max-width: 280px; transform: scale(1.08); }
+      .mensaje p { font-size: 1rem; }
+      img { max-width: 280px; transform: scale(1.1); }
     }
 
     @media (min-width: 1000px) {
-      h1 { font-size: 2.8rem; }
-      p  { font-size: 1.2rem; max-width: 700px; }
-      img { max-width: 380px; transform: scale(1.25); }
+      h1 { font-size: 3rem; }
+      .mensaje p { font-size: 1.4rem; max-width: 700px; }
+      img { max-width: 350px; transform: scale(1.2); }
     }
   </style>
 </head>
 <body>
   <h1>🌹 Feliz Día de las Flores 🌹</h1>
 
-  <!-- Mantén exactamente el mismo nombre de la imagen -->
-  <img src="20_09_2025.png" alt="Ramo de flores">
+  <!-- Imagen con carga suave -->
+  <img src="20_09_2025.png" alt="Ramo de flores" loading="lazy" class="loading">
 
-  <p>
-  💛 Cada pétalo amarillo es un rayito de sol que quiero regalarte hoy 💛
-  </p>
-  <p>
-    🌹 Gracias por llenar mi vida de alegría, ternura y amor 🌹
-  </p>
-  <p>
-    ✉️ Eres mi personita favorita y siempre lo serás ✉️
-  </p>
+  <!-- Mensaje separado por frases -->
+  <div class="mensaje">
+    <p>💛 Cada pétalo amarillo es un rayito de sol que quiero regalarte hoy.</p>
+    <p>🌹 Gracias por llenar mi vida de alegría, ternura y amor.</p>
+    <p>✉️ Eres mi personita favorita y siempre lo serás.</p>
+  </div>
 
-
-  <!-- 🎶 Música (se activará al primer click) -->
+  <!-- 🎶 Música -->
   <audio id="musica" loop>
     <source src="cancion.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    // 💛 Bolitas amarillas subiendo
-    function crearDestelloUp() {
-      const bolita = document.createElement("div");
-      bolita.classList.add("destelloUp");
-      const size = Math.random() * 12 + 6; // 6px - 18px
-      bolita.style.width = size + "px";
-      bolita.style.height = size + "px";
-      // aparecer desde abajo en posición aleatoria con margen para mejor visual
-      bolita.style.left = Math.random() * 92 + 4 + "vw";
-      // empezar justo fuera de pantalla abajo (animation subir se encarga)
-      document.body.appendChild(bolita);
-      setTimeout(() => bolita.remove(), 5200);
-    }
-    const intervaloBolitas = setInterval(crearDestelloUp, 450);
+    // 🎵 Reproduce música al primer clic
+    const musica = document.getElementById("musica");
+    document.body.addEventListener("click", () => {
+      musica.play();
+    }, { once: true });
 
-    // 🌻 Lluvia de girasoles
+    // 🌸 Imagen con efecto blur al cargar
+    const imagen = document.querySelector("img");
+    imagen.addEventListener("load", () => {
+      imagen.classList.remove("loading");
+    });
+
+    // 🌻 Crear girasoles cayendo
     function crearGirasol() {
       const girasol = document.createElement("div");
       girasol.classList.add("girasol");
       girasol.innerHTML = "🌻";
-      girasol.style.left = Math.random() * 95 + "vw";
-      // tamaño variable
-      girasol.style.fontSize = Math.random() * 26 + 18 + "px"; // 18px - 44px
-      // variación en la duración y delay para que no parezca mecánico
-      const dur = Math.random() * 3 + 5; // 5s - 8s
-      const delay = Math.random() * 1.5; // 0 - 1.5s
-      girasol.style.animationDuration = dur + "s";
-      girasol.style.animationDelay = delay + "s";
+      girasol.style.left = Math.random() * 100 + "vw";
+      girasol.style.fontSize = (Math.random() * 10 + 14) + "px";
       document.body.appendChild(girasol);
-      setTimeout(() => girasol.remove(), (dur + delay) * 1000 + 200);
+      setTimeout(() => girasol.remove(), 6000);
     }
-    const intervaloGirasoles = setInterval(crearGirasol, 700);
+    setInterval(crearGirasol, 1200);
 
-    // 🎵 Música + destello puntual al click (una sola vez activa la música)
-    const musica = document.getElementById("musica");
-    let musicaActivada = false;
-
-    document.body.addEventListener("click", (e) => {
-      // activar música solo la primera vez (intento de play; puede fallar si navegador bloquea)
-      if (!musicaActivada) {
-        musica.play().catch(() => {/* si falla, nada */});
-        musicaActivada = true;
-      }
-
-      // crear destello puntual donde tocó
-      const destello = document.createElement("div");
-      destello.classList.add("destello");
-      destello.innerHTML = "✨";
-      destello.style.left = e.pageX + "px";
-      destello.style.top  = e.pageY + "px";
-      document.body.appendChild(destello);
-      setTimeout(() => destello.remove(), 1000);
-    }, { passive: true });
-
-    // Opcional: si quieres pausar todo por rendimiento cuando la pestaña no está activa
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        // pausar música y reducir creación de elementos
-        musica.pause();
-        clearInterval(intervaloBolitas);
-        clearInterval(intervaloGirasoles);
-      } else {
-        // reanudar (no forzará música a sonar sin interacción)
-        // reestablecer intervalos
-        setInterval(crearDestelloUp, 450);
-        setInterval(crearGirasol, 700);
-      }
-    });
+    // 🔆 Crear bolitas amarillas subiendo
+    function crearBolita() {
+      const bolita = document.createElement("div");
+      bolita.classList.add("bolita");
+      const size = Math.random() * 6 + 4; // tamaño más pequeño
+      bolita.style.width = size + "px";
+      bolita.style.height = size + "px";
+      bolita.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(bolita);
+      setTimeout(() => bolita.remove(), 4000);
+    }
+    setInterval(crearBolita, 500);
   </script>
 </body>
 </html>
