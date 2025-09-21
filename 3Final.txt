@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nayi 💛</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px 20px 40px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: 100vw;
+      box-sizing: border-box;
+      background: #000;
+      color: #fff;
+    }
+
+    /* 🌌 Fondo estrellado */
+    .fondo-estrellas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .estrella {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: parpadeo 2s infinite alternate;
+      box-shadow: 0 0 6px #fff, 0 0 12px #ffd700;
+    }
+    @keyframes parpadeo {
+      from { opacity: 0.3; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* 🌟 Burbujitas luminosas */
+    .burbuja {
+      position: fixed;
+      bottom: -10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,215,0,0.9), rgba(255,215,0,0));
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* 🌼 Pétalos cayendo */
+    .petalo {
+      position: fixed;
+      top: -10vh;
+      width: 10px;
+      height: 18px;
+      background: radial-gradient(circle at center, #ffd700 40%, #ffea70 100%);
+      border-radius: 50% 50% 50% 50%;
+      transform: rotate(20deg);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* 🎨 Títulos */
+    .titulo {
+      z-index: 2;
+      margin-top: 20px;
+    }
+    .titulo h1, .flores {
+      font-family: "Times New Roman", Times, serif;
+      font-weight: bold;
+      margin: 8px 0;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    /* ✨ Degradado dorado */
+    .gradiente {
+      background: linear-gradient(270deg, #ffd700, #fff8dc, #daa520, #ffd700);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: oro 6s ease infinite, brillo 3s infinite alternate;
+    }
+    @keyframes oro {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes brillo {
+      from { text-shadow: 0 0 8px rgba(255,215,0,0.6), 0 0 16px rgba(255,215,0,0.4); }
+      to   { text-shadow: 0 0 20px rgba(255,215,0,1), 0 0 40px rgba(255,215,0,0.8); }
+    }
+
+    /* ❤️ Corazón con resplandor */
+    .corazon {
+      display: block;
+      font-size: 2.2rem;
+      margin-top: 5px;
+      animation: latido 1.2s infinite;
+      text-shadow: 0 0 8px #ff0000, 0 0 16px #ff4d4d, 0 0 24px #ff8080;
+    }
+    @keyframes latido {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    /* 📜 Mensaje */
+    .mensaje {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      position: relative;
+      margin-top: 15px;
+    }
+    .mensaje p {
+      font-size: 0.95rem;
+      color: #fff;
+      line-height: 1.5;
+      margin: 6px 0;
+      text-align: center;
+      opacity: 0;
+    }
+
+    img {
+      width: 100%;
+      max-width: 450px;
+      margin: 15px 0;
+      z-index: 1;
+      position: relative;
+      pointer-events: none;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* ✨ Destello al click */
+    .destello {
+      position: absolute;
+      color: #fff;
+      font-size: 2rem;
+      transform: translate(-50%, -50%);
+      animation: destello 1.2s ease forwards;
+      text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #ff0;
+      pointer-events: none;
+      z-index: 5;
+    }
+    @keyframes destello {
+      from { transform: scale(0); opacity: 1; }
+      to { transform: scale(2.5); opacity: 0; }
+    }
+
+    /* 📱 Responsive */
+    @media (max-width: 600px) {
+      .titulo h1, .flores { font-size: 1.6rem; line-height: 1.2; }
+      .corazon { font-size: 2rem; }
+      .mensaje p { font-size: 0.85rem; }
+      img { max-width: 380px; width: 95%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 🌌 Fondo estrellado -->
+  <div class="fondo-estrellas" id="fondo"></div>
+
+  <!-- 🎨 Títulos -->
+  <div class="titulo">
+    <h1><span class="gradiente">FELIZ 21 DE SEPTIEMBRE</span></h1>
+    <div class="corazon">❤️</div>
+    <div class="flores"><span>🌼</span> <span class="gradiente">PARA TI, MI NAYI</span> <span>🌼</span></div>
+  </div>
+
+  <img src="20_09_2025.png" alt="Ramo de flores" loading="lazy">
+
+  <!-- 📜 Frases -->
+  <div class="mensaje">
+    <p>💛 Cada pétalo amarillo lleva un deseo de verte siempre feliz.</p>
+    <p>❤️ Gracias por ser mi razón de sonreír cada día.</p>
+    <p>🌹 Eres mi personita favorita y siempre lo serás.</p>
+  </div>
+
+  <!-- 🎶 Música -->
+  <audio id="musica" loop>
+    <source src="cancion.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // 🌟 Estrellas en el fondo
+    const fondo = document.getElementById("fondo");
+    for (let i = 0; i < 200; i++) {
+      const estrella = document.createElement("div");
+      estrella.classList.add("estrella");
+      const size = Math.random() * 2 + 1;
+      estrella.style.width = size + "px";
+      estrella.style.height = size + "px";
+      estrella.style.top = Math.random() * 100 + "vh";
+      estrella.style.left = Math.random() * 100 + "vw";
+      estrella.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      fondo.appendChild(estrella);
+    }
+
+    // 🌼 Pétalos cayendo
+    function crearPetalo() {
+      const petalo = document.createElement("div");
+      petalo.classList.add("petalo");
+      petalo.style.left = Math.random() * 100 + "vw";
+      const duracion = Math.random() * 5 + 5;
+      const direccion = Math.random() < 0.5 ? -1 : 1;
+      petalo.animate([
+        { transform: `translateX(0px) translateY(-10vh) rotate(0deg)`, opacity: 1 },
+        { transform: `translateX(${direccion * 40}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
+      ], {
+        duration: duracion * 1000,
+        iterations: 1,
+        easing: "linear"
+      });
+      document.body.appendChild(petalo);
+      setTimeout(() => petalo.remove(), duracion * 1000);
+    }
+    setInterval(crearPetalo, 400);
+
+    // 🌟 Burbujas amarillas que suben
+    function crearBurbuja() {
+      const burbuja = document.createElement("div");
+      burbuja.classList.add("burbuja");
+      const size = Math.random() * 6 + 3;
+      burbuja.style.width = size + "px";
+      burbuja.style.height = size + "px";
+      burbuja.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(burbuja);
+
+      const duracion = Math.random() * 6 + 4;
+      burbuja.animate([
+        { transform: `translateY(0) scale(1)`, opacity: 0.8 },
+        { transform: `translateY(-110vh) scale(0.5)`, opacity: 0 }
+      ], {
+        duration: duracion * 1000,
+        iterations: 1,
+        easing: "linear"
+      });
+
+      setTimeout(() => burbuja.remove(), duracion * 1000);
+    }
+    setInterval(crearBurbuja, 250);
+
+    // 🎵 Música y ✨ destello al click
+    const musica = document.getElementById("musica");
+    document.body.addEventListener("click", (e) => {
+      musica.play().catch(()=>{});
+      const destello = document.createElement("div");
+      destello.classList.add("destello");
+      destello.innerHTML = "✨";
+      destello.style.left = e.pageX + "px";
+      destello.style.top = e.pageY + "px";
+      document.body.appendChild(destello);
+      setTimeout(() => destello.remove(), 1200);
+    });
+
+    // 💌 Frases con efecto de máquina
+    const frases = document.querySelectorAll(".mensaje p");
+    let indexFrase = 0;
+
+    function escribirTexto(elemento, texto, callback) {
+      elemento.textContent = "";
+      elemento.style.opacity = 1;
+      let i = 0;
+      const intervalo = setInterval(() => {
+        elemento.textContent += texto[i];
+        i++;
+        if (i === texto.length) {
+          clearInterval(intervalo);
+          if (callback) setTimeout(callback, 600);
+        }
+      }, 70);
+    }
+
+    function mostrarFrases() {
+      if (indexFrase < frases.length) {
+        escribirTexto(frases[indexFrase], frases[indexFrase].textContent, () => {
+          indexFrase++;
+          mostrarFrases();
+        });
+      }
+    }
+
+    window.onload = () => {
+      mostrarFrases();
+    };
+  </script>
+</body>
+</html>
