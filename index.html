@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nayi 💛</title>
   <style>
-    /* --- ESTILOS BASE (igual que tu versión original) --- */
     body {
       margin: 0;
       padding: 20px 20px 40px;
@@ -58,26 +57,17 @@
       z-index: 1;
     }
 
-    /* 🌼 Pétalos cayendo con degradado animado */
+    /* 🌼 Pétalos cayendo */
     .petalo {
       position: fixed;
       top: -10vh;
       width: 10px;
       height: 18px;
-      background: linear-gradient(270deg, #ffd700, #fff8dc, #daa520, #ffd700);
-      background-size: 400% 400%;
+      background: radial-gradient(circle at center, #ffd700 40%, #ffea70 100%);
       border-radius: 50% 50% 50% 50%;
       transform: rotate(20deg);
       pointer-events: none;
       z-index: 1;
-      opacity: 0.9;
-      animation: oroPetalo 5s ease infinite;
-    }
-    
-    @keyframes oroPetalo {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
     }
 
     /* ✨ Degradado dorado */
@@ -127,17 +117,7 @@
       to { transform: scale(2.5); opacity: 0; }
     }
 
-    /* 📱 Responsive */
-    @media (max-width: 600px) {
-      .titulo h1, .flores { font-size: 1.6rem; line-height: 1.2; }
-      .corazon { font-size: 2rem; }
-      .mensaje p { font-size: 0.85rem; }
-      img { max-width: 380px; width: 95%; }
-      
-      .sobre { transform: scale(0.9); }
-    }
-
-    /* === PÁGINA 1 - SOBRE QUE SE VOLTEA (MEJORADO) === */
+    /* === PÁGINA 1 - SOBRE QUE SE VOLTEA (MEJORADO Y CENTRADO) === */
     #pagina1 {
       min-height: calc(100vh - 40px);
       display: flex;
@@ -146,6 +126,15 @@
       padding: 20px;
       perspective: 1000px;
       width: 100%;
+      position: relative;
+    }
+
+    .sobre-contenedor {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
     }
 
     .sobre {
@@ -318,8 +307,10 @@
     /* === PÁGINA 2 (ESTILO ORIGINAL - SIN CAMBIOS) === */
     #pagina2 {
       display: none;
+      width: 100%;
     }
 
+    /* 🎨 Títulos */
     .titulo {
       z-index: 2;
       margin-top: 20px;
@@ -332,6 +323,7 @@
       line-height: 1.2;
     }
 
+    /* 📜 Mensaje */
     .mensaje {
       display: flex;
       flex-direction: column;
@@ -362,6 +354,18 @@
       object-fit: contain;
     }
 
+    /* 📱 Responsive */
+    @media (max-width: 600px) {
+      .titulo h1, .flores { font-size: 1.6rem; line-height: 1.2; }
+      .corazon { font-size: 2rem; }
+      .mensaje p { font-size: 0.85rem; }
+      img { max-width: 380px; width: 95%; }
+      
+      .sobre {
+        transform: scale(0.9);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -370,27 +374,29 @@
 
   <!-- === PÁGINA 1 (sobre que se voltea) === -->
   <div id="pagina1" class="pagina">
-    <div class="sobre" id="sobre">
-      <!-- Cara frontal del sobre (cerrado) -->
-      <div class="sobre-cerrado">
-        <div class="sello">N</div>
-        <div class="texto-sobre">
-          <h2>Para mi Nayi 💛</h2>
-          <p>Toca para abrir</p>
+    <div class="sobre-contenedor">
+      <div class="sobre" id="sobre">
+        <!-- Cara frontal del sobre (cerrado) -->
+        <div class="sobre-cerrado">
+          <div class="sello">N</div>
+          <div class="texto-sobre">
+            <h2>Para mi Nayi 💛</h2>
+            <p>Toca para abrir</p>
+          </div>
+          <div class="esquina esquina-tl"></div>
+          <div class="esquina esquina-tr"></div>
+          <div class="esquina esquina-bl"></div>
+          <div class="esquina esquina-br"></div>
         </div>
-        <div class="esquina esquina-tl"></div>
-        <div class="esquina esquina-tr"></div>
-        <div class="esquina esquina-bl"></div>
-        <div class="esquina esquina-br"></div>
-      </div>
-      
-      <!-- Cara trasera del sobre (carta abierta) -->
-      <div class="carta-interior">
-        <div class="contenido-carta">
-          <h2>Mi Querida Nayi</h2>
-          <p>En este día especial, quería recordarte lo increíble que eres.</p>
-          <p>Haz clic en el botón para descubrir tu sorpresa...</p>
-          <button id="abrirCarta" class="btn-abrir">Abrir regalo</button>
+        
+        <!-- Cara trasera del sobre (carta abierta) -->
+        <div class="carta-interior">
+          <div class="contenido-carta">
+            <h2>Mi Querida Nayi</h2>
+            <p>En este día especial, quería recordarte lo increíble que eres.</p>
+            <p>Haz clic en el botón para descubrir tu sorpresa...</p>
+            <button id="abrirCarta" class="btn-abrir">Abrir regalo</button>
+          </div>
         </div>
       </div>
     </div>
