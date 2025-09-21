@@ -3,24 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nayi 💛</title>
+  <title>Para mi Nayi 💛</title>
   <style>
-    body {
+    * {
       margin: 0;
-      padding: 20px 20px 40px;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
       overflow-x: hidden;
-      overflow-y: auto;
-      width: 100vw;
-      box-sizing: border-box;
       background: #000;
       color: #fff;
+      padding: 20px;
+      position: relative;
     }
 
     /* 🌌 Fondo estrellado */
@@ -33,6 +36,7 @@
       z-index: 0;
       overflow: hidden;
     }
+    
     .estrella {
       position: absolute;
       background: white;
@@ -41,6 +45,7 @@
       animation: parpadeo 2s infinite alternate;
       box-shadow: 0 0 6px #fff, 0 0 12px #ffd700;
     }
+    
     @keyframes parpadeo {
       from { opacity: 0.3; transform: scale(0.8); }
       to { opacity: 1; transform: scale(1.2); }
@@ -78,13 +83,15 @@
       -webkit-text-fill-color: transparent;
       animation: oro 6s ease infinite, brillo 3s infinite alternate;
     }
+    
     @keyframes oro {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+    
     @keyframes brillo {
-      from { text-shadow: 0 0 8px rgba(255,215,0,0.6), 0 0 16px rgba(255,215,0,0.4); }
+      from { text-shadow: 0 0 8px rgba(255,215,0,0.6), 极 0 16px rgba(255,215,0,0.4); }
       to   { text-shadow: 0 0 20px rgba(255,215,0,1), 0 0 40px rgba(255,215,0,0.8); }
     }
 
@@ -96,6 +103,7 @@
       animation: latido 1.2s infinite;
       text-shadow: 0 0 8px #ff0000, 0 0 16px #ff4d4d, 0 0 24px #ff8080;
     }
+    
     @keyframes latido {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.3); }
@@ -112,21 +120,21 @@
       pointer-events: none;
       z-index: 5;
     }
+    
     @keyframes destello {
       from { transform: scale(0); opacity: 1; }
       to { transform: scale(2.5); opacity: 0; }
     }
 
-    /* === PÁGINA 1 - SOBRE QUE SE VOLTEA (MEJORADO Y CENTRADO) === */
+    /* === PÁGINA 1 - SOBRE QUE SE VOLTEA === */
     #pagina1 {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      perspective: 1000px;
       width: 100%;
       position: relative;
+      z-index: 10;
     }
 
     .sobre-contenedor {
@@ -145,6 +153,7 @@
       transform-style: preserve-3d;
       transition: transform 1s ease;
       z-index: 10;
+      margin: 0 auto;
     }
 
     .sobre-cerrado {
@@ -221,7 +230,7 @@
       width: 100%;
       height: 100%;
       background: 
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238b7500' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 极.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 极 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-极-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 极-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-极 60c2.21 0 4-1.79 4-极s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.极4-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238b7500' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E"),
         linear-gradient(to bottom, #f9f0d9, #e7d8b5);
       border-radius: 12px;
       padding: 25px;
@@ -267,6 +276,8 @@
       font-family: 'Times New Roman', serif;
       box-shadow: 0 6px 18px rgba(218, 165, 32, 0.3);
       transition: all 0.3s ease;
+      z-index: 20;
+      position: relative;
     }
 
     .btn-abrir:hover {
@@ -299,17 +310,23 @@
       background-size: contain;
     }
 
-    .esquina-tl { top: 5px; left: 5px; }
+    .esquina-tl { top: 5极; left: 5px; }
     .esquina-tr { top: 5px; right: 5px; transform: rotate(90deg); }
     .esquina-bl { bottom: 5px; left: 5px; transform: rotate(270deg); }
     .esquina-br { bottom: 5px; right: 5px; transform: rotate(180deg); }
 
-    /* === PÁGINA 2 (ESTILO ORIGINAL - SIN CAMBIOS) === */
+    /* === PÁGINA 2 (ESTILO ORIGINAL) === */
     #pagina2 {
       display: none;
       width: 100%;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 10;
     }
 
     /* 🎨 Títulos */
@@ -358,10 +375,23 @@
 
     /* 📱 Responsive */
     @media (max-width: 600px) {
-      .titulo h1, .flores { font-size: 1.6rem; line-height: 1.2; }
-      .corazon { font-size: 2rem; }
-      .mensaje p { font-size: 0.85rem; }
-      img { max-width: 380px; width: 95%; }
+      .titulo h1, .flores { 
+        font-size: 1.6rem; 
+        line-height: 1.2; 
+      }
+      
+      .corazon { 
+        font-size: 2rem; 
+      }
+      
+      .mensaje p { 
+        font-size: 0.85rem; 
+      }
+      
+      img { 
+        max-width: 380px; 
+        width: 95%; 
+      }
       
       .sobre {
         transform: scale(0.85);
@@ -382,11 +412,28 @@
       }
     }
 
+    /* Transición entre páginas */
+    .transicion {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 15;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease;
+    }
+
   </style>
 </head>
 <body>
   <!-- 🌌 Fondo estrellado -->
   <div class="fondo-estrellas" id="fondo"></div>
+
+  <!-- Efecto de transición -->
+  <div class="transicion" id="transicion"></div>
 
   <!-- === PÁGINA 1 (sobre que se voltea) === -->
   <div id="pagina1" class="pagina">
@@ -418,7 +465,7 @@
     </div>
   </div>
 
-  <!-- === PÁGINA 2 (TODO tu contenido original intacto) === -->
+  <!-- === PÁGINA 2 (contenido original) === -->
   <div id="pagina2" class="pagina">
     <!-- 🎨 Títulos -->
     <div class="titulo">
@@ -443,7 +490,7 @@
   </audio>
 
   <script>
-    // 🌟 Estrellas en el fondo (igual que tu script original)
+    // 🌟 Estrellas en el fondo
     const fondo = document.getElementById("fondo");
     for (let i = 0; i < 200; i++) {
       const estrella = document.createElement("div");
@@ -457,7 +504,7 @@
       fondo.appendChild(estrella);
     }
 
-    // 🌼 Pétalos cayendo (idéntico)
+    // 🌼 Pétalos cayendo
     function crearPetalo() {
       const petalo = document.createElement("div");
       petalo.classList.add("petalo");
@@ -477,7 +524,7 @@
     }
     setInterval(crearPetalo, 400);
 
-    // 🌟 Burbujas amarillas que suben (idéntico)
+    // 🌟 Burbujas amarillas que suben
     function crearBurbuja() {
       const burbuja = document.createElement("div");
       burbuja.classList.add("burbuja");
@@ -547,22 +594,31 @@
     const abrirCartaBtn = document.getElementById("abrirCarta");
     const pagina1 = document.getElementById("pagina1");
     const pagina2 = document.getElementById("pagina2");
+    const transicion = document.getElementById("transicion");
 
     // Primero: abrir el sobre al hacer clic en él
-    sobre.addEventListener("click", function() {
-      this.classList.add("abierto");
+    sobre.addEventListener("click", function(e) {
+      // Solo abrir el sobre si no se hizo clic en el botón
+      if (e.target !== abrirCartaBtn && !abrirCartaBtn.contains(e.target)) {
+        this.classList.add("abierto");
+      }
     });
 
     // Segundo: al hacer clic en el botón dentro de la carta, ir a página2
     abrirCartaBtn.addEventListener("click", (ev) => {
-      // Efecto de desvanecimiento de la página1
-      pagina1.style.opacity = "0";
-      pagina1.style.transition = "opacity 1s ease";
+      // Prevenir que el evento se propague al sobre
+      ev.stopPropagation();
+      
+      // Efecto de transición
+      transicion.style.opacity = "1";
       
       setTimeout(() => {
         // Ocultar primera página y mostrar segunda
         pagina1.style.display = "none";
         pagina2.style.display = "flex";
+        
+        // Quitar transición
+        transicion.style.opacity = "0";
         
         // reproducir música
         musica.play().catch(()=>{});
@@ -571,7 +627,7 @@
         indexFrase = 0;
         mostrarFrases();
         
-        // opcional: que la segunda página empiece en la parte superior
+        // Que la segunda página empiece en la parte superior
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 1000);
     });
