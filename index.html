@@ -46,7 +46,7 @@
       to { opacity: 1; transform: scale(1.2); }
     }
 
-    /* 🌟 Burbujitas amarillas */
+    /* 🌟 Burbujitas luminosas */
     .burbuja {
       position: fixed;
       bottom: -10px;
@@ -62,32 +62,24 @@
       z-index: 2;
       margin-top: 20px;
     }
-
     .titulo h1, .flores {
       font-family: "Times New Roman", Times, serif;
       font-weight: bold;
       margin: 8px 0;
-      font-size: 1.9rem;
-      line-height: 1.2;
-    }
-
-    /* Texto con efecto dorado */
-    .texto {
       background: linear-gradient(270deg, #ffd700, #fff8dc, #daa520, #ffd700);
       background-size: 400% 400%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: oro 8s ease infinite, brillo 3s infinite alternate;
     }
-
-    /* Emojis normales */
-    .emoji {
-      -webkit-text-fill-color: initial; 
-      background: none;
-      animation: none;
+    .titulo h1 {
+      font-size: 1.6rem;
+      line-height: 1.2;
     }
-
-    /* 🔥 Animación del degradado dorado */
+    .flores {
+      font-size: 1.9rem;
+      line-height: 1.2;
+    }
     @keyframes oro {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -96,6 +88,18 @@
     @keyframes brillo {
       from { text-shadow: 0 0 8px rgba(255,215,0,0.6), 0 0 16px rgba(255,215,0,0.4); }
       to   { text-shadow: 0 0 20px rgba(255,215,0,1), 0 0 40px rgba(255,215,0,0.8); }
+    }
+
+    /* ❤️ Corazón centrado */
+    .corazon {
+      font-size: 2rem;
+      margin: 6px 0;
+      animation: latido 1.8s infinite;
+      text-shadow: 0 0 8px rgba(255,0,0,0.7), 0 0 16px rgba(255,0,0,0.4);
+    }
+    @keyframes latido {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 6px rgba(255,0,0,0.6); }
+      50% { transform: scale(1.2); text-shadow: 0 0 18px rgba(255,0,0,1); }
     }
 
     /* 📜 Mensaje */
@@ -133,24 +137,13 @@
     .petalo {
       position: fixed;
       top: -10vh;
-      width: 14px;
-      height: 24px;
-      background: radial-gradient(circle at top, #ffd700 20%, #daa520 90%);
+      width: 12px;
+      height: 22px;
+      background: radial-gradient(circle at top, #ffd700 30%, #daa520 90%);
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      pointer-events: none;
+      z-index: 1;
       opacity: 0.9;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .contenedor-petalos {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 1;
     }
 
     /* ✨ Destello al click */
@@ -171,7 +164,9 @@
 
     /* 📱 Responsive */
     @media (max-width: 600px) {
-      .titulo h1, .flores { font-size: 1.6rem; }
+      .titulo h1 { font-size: 1.3rem; }
+      .flores { font-size: 1.7rem; }
+      .corazon { font-size: 1.6rem; }
       .mensaje p { font-size: 0.85rem; }
       img { max-width: 380px; width: 95%; }
     }
@@ -180,14 +175,12 @@
 <body>
   <!-- 🌌 Fondo estrellado -->
   <div class="fondo-estrellas" id="fondo"></div>
-  
-  <!-- 🌼 Contenedor para pétalos -->
-  <div class="contenedor-petalos" id="contenedor-petalos"></div>
 
   <!-- 🎨 Títulos -->
   <div class="titulo">
-    <h1><span class="emoji">❤️</span> <span class="texto">FELIZ 21 DE SEPTIEMBRE</span> <span class="emoji">❤️</span></h1>
-    <div class="flores"><span class="emoji">🌼</span> <span class="texto">PARA TI, MI NAYI</span> <span class="emoji">🌼</span></div>
+    <h1>FELIZ 21 DE SEPTIEMBRE</h1>
+    <div class="corazon">❤️</div>
+    <div class="flores">🌼 PARA TI, MI NAYI 🌼</div>
   </div>
 
   <img src="20_09_2025.png" alt="Ramo de flores" loading="lazy">
@@ -205,7 +198,7 @@
   </audio>
 
   <script>
-    // 🌟 Estrellas en el fondo
+    // 🌟 Estrellas
     const fondo = document.getElementById("fondo");
     for (let i = 0; i < 200; i++) {
       const estrella = document.createElement("div");
@@ -224,50 +217,45 @@
       const petalo = document.createElement("div");
       petalo.classList.add("petalo");
       petalo.style.left = Math.random() * 100 + "vw";
-      petalo.style.width = (Math.random() * 8 + 10) + "px";
-      petalo.style.height = (Math.random() * 14 + 20) + "px";
-
-      const duracion = Math.random() * 5 + 6;
+      const duracion = Math.random() * 6 + 5;
       const direccion = Math.random() < 0.5 ? -1 : 1;
+      const rotacion = Math.random() * 360;
       petalo.animate([
-        { transform: `translateX(0px) translateY(-10vh) rotate(0deg)`, opacity: 1 },
-        { transform: `translateX(${direccion * 50}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
+        { transform: `translateY(-10vh) rotate(${rotacion}deg)`, opacity: 1 },
+        { transform: `translateX(${direccion * 40}px) translateY(110vh) rotate(${rotacion + 180}deg)`, opacity: 0.7 }
       ], {
         duration: duracion * 1000,
         iterations: 1,
         easing: "linear"
       });
-
-      document.getElementById("contenedor-petalos").appendChild(petalo);
+      document.body.appendChild(petalo);
       setTimeout(() => petalo.remove(), duracion * 1000);
     }
-    setInterval(crearPetalo, 300); // 🌼 más pétalos
+    setInterval(crearPetalo, 400);
 
-    // 🌟 Burbujas amarillas que suben
+    // 🌟 Burbujas que suben
     function crearBurbuja() {
       const burbuja = document.createElement("div");
       burbuja.classList.add("burbuja");
-      const size = Math.random() * 5 + 3;
+      const size = Math.random() * 6 + 3;
       burbuja.style.width = size + "px";
       burbuja.style.height = size + "px";
       burbuja.style.left = Math.random() * 100 + "vw";
       document.body.appendChild(burbuja);
-
-      const duracion = Math.random() * 5 + 3;
+      const duracion = Math.random() * 6 + 4;
       burbuja.animate([
         { transform: `translateY(0) scale(1)`, opacity: 0.7 },
-        { transform: `translateY(-110vh) scale(0.5)`, opacity: 0 }
+        { transform: `translateY(-110vh) scale(0.4)`, opacity: 0 }
       ], {
         duration: duracion * 1000,
         iterations: 1,
         easing: "linear"
       });
-
       setTimeout(() => burbuja.remove(), duracion * 1000);
     }
-    setInterval(crearBurbuja, 250); // 🌟 más burbujas
+    setInterval(crearBurbuja, 200);
 
-    // 🎵 Música y ✨ destello al click
+    // 🎵 Música + destello
     const musica = document.getElementById("musica");
     document.body.addEventListener("click", (e) => {
       musica.play().catch(()=>{});
@@ -283,7 +271,6 @@
     // 💌 Frases con efecto máquina
     const frases = document.querySelectorAll(".mensaje p");
     let indexFrase = 0;
-
     function escribirTexto(elemento, texto, callback) {
       elemento.textContent = "";
       elemento.style.opacity = 1;
@@ -297,7 +284,6 @@
         }
       }, 70);
     }
-
     function mostrarFrases() {
       if (indexFrase < frases.length) {
         escribirTexto(frases[indexFrase], frases[indexFrase].textContent, () => {
@@ -306,10 +292,7 @@
         });
       }
     }
-
-    window.onload = () => {
-      mostrarFrases();
-    };
+    window.onload = () => mostrarFrases();
   </script>
 </body>
 </html>
