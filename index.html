@@ -79,7 +79,7 @@
       font-family: "Times New Roman", Times, serif;
       font-weight: bold;
       margin: 8px 0;
-      font-size: 2rem; /* ✅ mismo tamaño */
+      font-size: 2rem;
       line-height: 1.2;
     }
 
@@ -101,10 +101,13 @@
       to   { text-shadow: 0 0 20px rgba(255,215,0,1), 0 0 40px rgba(255,215,0,0.8); }
     }
 
-    /* ❤️ Corazón con efecto latido */
+    /* ❤️ Corazón con resplandor */
     .corazon {
-      display: inline-block;
+      display: block;
+      font-size: 2.2rem;
+      margin-top: 5px;
       animation: latido 1.2s infinite;
+      text-shadow: 0 0 8px #ff0000, 0 0 16px #ff4d4d, 0 0 24px #ff8080;
     }
     @keyframes latido {
       0%, 100% { transform: scale(1); }
@@ -161,6 +164,7 @@
     /* 📱 Responsive */
     @media (max-width: 600px) {
       .titulo h1, .flores { font-size: 1.6rem; line-height: 1.2; }
+      .corazon { font-size: 2rem; }
       .mensaje p { font-size: 0.85rem; }
       img { max-width: 380px; width: 95%; }
     }
@@ -172,7 +176,8 @@
 
   <!-- 🎨 Títulos -->
   <div class="titulo">
-    <h1><span class="gradiente">FELIZ 21 DE SEPTIEMBRE</span> <span class="corazon">❤️</span></h1>
+    <h1><span class="gradiente">FELIZ 21 DE SEPTIEMBRE</span></h1>
+    <div class="corazon">❤️</div>
     <div class="flores"><span>🌼</span> <span class="gradiente">PARA TI, MI NAYI</span> <span>🌼</span></div>
   </div>
 
@@ -223,7 +228,7 @@
       document.body.appendChild(petalo);
       setTimeout(() => petalo.remove(), duracion * 1000);
     }
-    setInterval(crearPetalo, 400); // más pétalos
+    setInterval(crearPetalo, 400);
 
     // 🌟 Burbujas amarillas que suben
     function crearBurbuja() {
